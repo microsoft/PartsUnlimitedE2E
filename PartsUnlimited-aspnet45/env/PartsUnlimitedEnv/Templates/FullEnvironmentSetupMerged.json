@@ -89,7 +89,6 @@
             "type": "Microsoft.Sql/servers",
             "location": "[resourceGroup().location]",
             "apiVersion": "2014-04-01-preview",
-            "dependsOn": [ ],
             "tags": {
                 "displayName": "PartsUnlimitedServer"
             },
@@ -104,7 +103,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[concat('Microsoft.Sql/servers/', parameters('PartsUnlimitedServerName'))]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb"
                     ],
                     "properties": {
                         "startIpAddress": "0.0.0.0",
@@ -117,7 +116,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[parameters('PartsUnlimitedServerName')]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb"
                     ],
                     "tags": {
                         "displayName": "PartsUnlimitedDB"
@@ -150,7 +149,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameDev'))]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb-Dev"
                     ],
                     "properties": {
                         "startIpAddress": "0.0.0.0",
@@ -163,7 +162,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[variables('PartsUnlimitedServerNameDev')]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb-Dev"
                     ],
                     "tags": {
                         "displayName": "PartsUnlimitedDB"
@@ -196,7 +195,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameStage'))]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb-Stage"
                     ],
                     "properties": {
                         "startIpAddress": "0.0.0.0",
@@ -209,7 +208,7 @@
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
                     "dependsOn": [
-                        "[variables('PartsUnlimitedServerNameStage')]"
+                        "Microsoft.Resources/deployments/SqlServerAndDb-Stage"
                     ],
                     "tags": {
                         "displayName": "PartsUnlimitedDB"
@@ -280,7 +279,7 @@
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]"
+                "Microsoft.Resources/deployments/HostingPlan"
             ],
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
@@ -346,7 +345,7 @@
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]"
+                "Microsoft.Resources/deployments/HostingPlan"
             ],
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
@@ -380,7 +379,7 @@
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]"
+                "Microsoft.Resources/deployments/HostingPlan"
             ],
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
