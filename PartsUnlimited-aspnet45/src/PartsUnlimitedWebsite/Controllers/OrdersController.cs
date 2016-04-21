@@ -53,6 +53,13 @@ namespace PartsUnlimited.Controllers
                     {"Id", id.ToString() },
                     {"Username", username }
                 };
+            var costSummary = new OrderCostSummary()
+            {
+                CartSubTotal = 0.ToString("C"),
+                CartShipping = 0.ToString("C"),
+                CartTax = 0.ToString("C"),
+                CartTotal = 0.ToString("C"),
+            };
             if (order.OrderDetails == null)
             {
                 _telemetry.TrackEvent("Order/Server/NullDetails", eventProperties, null);
@@ -64,21 +71,18 @@ namespace PartsUnlimited.Controllers
                     {"LineItemCount", order.OrderDetails.Count }
                 };
                 _telemetry.TrackEvent("Order/Server/Details", eventProperties, eventMeasurements);
+
+                var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
+                var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
+                var shipping = itemsCount * (decimal)5.00;
+                var tax = (subTotal + shipping) * (decimal)0.05;
+                var total = subTotal + shipping + tax;
+
+                costSummary.CartSubTotal = subTotal.ToString("C");
+                costSummary.CartShipping = shipping.ToString("C");
+                costSummary.CartTax = tax.ToString("C");
+                costSummary.CartTotal = total.ToString("C");
             }
-
-            var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
-            var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
-            var shipping = itemsCount * (decimal)5.00;
-            var tax = (subTotal + shipping) * (decimal)0.05;
-            var total = subTotal + shipping + tax;
-
-            var costSummary = new OrderCostSummary
-            {
-                CartSubTotal = subTotal.ToString("C"),
-                CartShipping = shipping.ToString("C"),
-                CartTax = tax.ToString("C"),
-                CartTotal = total.ToString("C")
-            };
 
             var viewModel = new OrderDetailsViewModel
             {
