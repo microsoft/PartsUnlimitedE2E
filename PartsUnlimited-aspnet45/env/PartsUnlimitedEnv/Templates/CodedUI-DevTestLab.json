@@ -23,7 +23,7 @@
 		}
 	},
 	"variables": {
-		"vmId":"[resourceId ('Microsoft.DevTestLab/labs/virtualMachines, parameters('labName'), parameters('newVmName'))]",
+		"vmId":"[resourceId('Microsoft.DevTestLab/labs/virtualMachines', parameters('labName'), parameters('newVmName'))]",
 		"vmName":"[concat(parameters('labName'), '/', parameters('newVmName'))]"
 	},
 	"resources": [
@@ -59,7 +59,7 @@
 	"outputs": {
 		"labVmId":{
 			"type": "string",
-			"value": "[varialbes('vmId')]"
+			"value": "[variables('vmId')]"
 		}
 	}
 }
