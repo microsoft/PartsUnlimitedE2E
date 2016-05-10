@@ -41,6 +41,10 @@
     <Content Include="Templates\Website.json" />
     <Content Include="Templates\WebsiteRules.json" />
     <Content Include="Templates\WebsiteWithTwoSlots.json" />
+    <None Include="Templates\CodedUI-DevTestLab.json" />
+    <None Include="Templates\FullEnvironmentSetupMerged.json" />
+    <None Include="Templates\FullEnvironmentSetupMerged.param.json" />
+    <None Include="tools\AzCopy.exe" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

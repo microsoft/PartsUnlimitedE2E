@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"newVMName":{
+			"type": "string",
+			"defaultValue": "colintestui"
+		},
+		"labName":{
+			"type": "string",
+			"defaultValue": "cd-devtest"
+		},
+		"size":{
+			"type": "string",
+			"defaultValue": "Standard_A0"
+		},
+		"userName":{
+			"type": "string",
+			"defaultValue": "colin"
+		},
+		"password":{
+			"type": "securestring"
+		}
+	},
+	"variables": {
+		"vmId":"[resourceId('Microsoft.DevTestLab/labs/virtualMachines', parameters('labName'), parameters('newVmName'))]",
+		"vmName":"[concat(parameters('labName'), '/', parameters('newVmName'))]"
+	},
+	"resources": [
+		{
+			"apiVersion": "2015-05-21-preview",
+			"type": "Microsoft.DevTestLab/labs/virtualMachines",
+			"name": "[variables('vmName')]",
+			"location": "[resourceGroup().location]",
+			"properties":{
+				"labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), 'dtlcd-devtest')]",
+				"notes": "Windows Server 2012 R2 Datacenter",
+				"galleryImageReference": {
+					"offer": "WindowsServer",
+					"publisher": "MicrosoftWindowsServer",
+					"sku": "2012-R2-Datacenter",
+					"osType": "Windows",
+					"version": "latest"
+				},
+				"size": "[parameters('size')]",
+				"userName": "[parameters('userName')]",
+				"password": "[parameters('password')]",
+				"isAuthenticationWithSshKey": false,
+				"artifacts":[
+					{
+						"artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'privaterepo271', 'windows-chrome')]"
+					}
+				],
+				"labSubnetName": "Dtlcd-devtestSubnet",
+				"disallowPublishIpAddress": false
+			}
+		}
+	],
+	"outputs": {
+		"labVmId":{
+			"type": "string",
+			"value": "[variables('vmId')]"
+		}
+	}
+}
