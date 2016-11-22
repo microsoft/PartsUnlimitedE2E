@@ -225,7 +225,7 @@
         {
             "name": "[concat(parameters('WebsiteName'), '-Insights')]",
             "type": "Microsoft.Insights/components",
-            "location": "Central US",
+            "location": "West Europe",
             "apiVersion": "2014-04-01",
             "tags": {
                 "displayName": "insightsComponents"
@@ -237,7 +237,7 @@
         {
             "name": "[concat(parameters('WebsiteName'), '-DevInsights')]",
             "type": "Microsoft.Insights/components",
-            "location": "Central US",
+            "location": "West Europe",
             "apiVersion": "2014-04-01",
             "tags": {
                 "displayName": "insightsComponents"
@@ -249,7 +249,7 @@
         {
             "name": "[concat(parameters('WebsiteName'), '-StagingInsights')]",
             "type": "Microsoft.Insights/components",
-            "location": "Central US",
+            "location": "West Europe",
             "apiVersion": "2014-04-01",
             "tags": {
                 "displayName": "insightsComponents"
@@ -439,9 +439,9 @@
                         "[resourceId('Microsoft.Web/sites/', parameters('WebSiteName'))]"
                     ],
                     "properties": {
-                        "DefaultConnectionString": { 
+                        "DefaultConnectionString": {
                             "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerName'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPassword'), ';')]",
-                            "type": "SQLAzure" 
+                            "type": "SQLAzure"
                         }
                     }
                 },
@@ -489,7 +489,7 @@
                             "properties": {
                                 "DefaultConnectionString": {
                                     "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameDev'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerNameDev'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPasswordForTest'), ';')]",
-                                    "type": "SQLAzure" 
+                                    "type": "SQLAzure"
                                 }
                             }
                         },
@@ -525,9 +525,9 @@
                                 "[resourceId('Microsoft.Web/sites/slots', parameters('WebSiteName'), 'Staging')]"
                             ],
                             "properties": {
-                                "DefaultConnectionString": { 
-                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameStage'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerNameStage'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPasswordForTest'), ';')]", 
-                                    "type": "SQLAzure" 
+                                "DefaultConnectionString": {
+                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameStage'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerNameStage'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPasswordForTest'), ';')]",
+                                    "type": "SQLAzure"
                                 }
                             }
                         },

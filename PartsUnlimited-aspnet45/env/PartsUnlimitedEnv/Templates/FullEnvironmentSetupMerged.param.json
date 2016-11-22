@@ -3,31 +3,31 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "WebsiteName": {
-            "value": ""
+            "value": "cdrm-pu2-demo"
         },
         "PartsUnlimitedServerName": {
-            "value": ""
+            "value": "cdrm-pu2-dbserver"
         },
         "PartsUnlimitedHostingPlanName": {
-            "value": ""
+            "value": "cdrm-pu2-plan"
         },
         "CdnStorageAccountName": {
-            "value": ""
+            "value": "cdrm-pu2-store"
         },
         "CdnStorageContainerName": {
-            "value": ""
+            "value": "cdrm-pu2-container"
         },
         "CdnStorageAccountNameForDev": {
-            "value": ""
+            "value": "cdrm-pu2-store-dev"
         },
         "CdnStorageContainerNameForDev": {
-            "value": ""
+            "value": "cdrm-pu2-container-dev"
         },
         "CdnStorageAccountNameForStaging": {
-            "value": ""
+            "value": "cdrm-pu2-store-stage"
         },
         "CdnStorageContainerNameForStaging": {
-            "value": ""
+            "value": "cdrm-pu2-container-stage"
         }
     }
 }
