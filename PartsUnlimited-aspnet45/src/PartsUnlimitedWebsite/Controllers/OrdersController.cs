@@ -74,8 +74,8 @@ namespace PartsUnlimited.Controllers
 
                 var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
                 var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
-                var shipping = itemsCount * (decimal)5.00;
-                var tax = (subTotal + shipping) * (decimal)0.05;
+                var shipping = itemsCount * (decimal)6.00;
+                var tax = (subTotal + shipping) * (decimal)0.06;
                 var total = subTotal + shipping + tax;
 
                 costSummary.CartSubTotal = subTotal.ToString("C");

@@ -14,7 +14,11 @@ namespace PartsUnlimited.Utils
         {
             try
             {
-                return inner.Resolve(serviceType);
+				if (serviceType.Name == "NewtownSoft.Serializer")
+				{
+					return inner.Resolve(serviceType);
+				}
+				return base.GetService(serviceType);
             }
             catch (ResolutionFailedException)
             {
