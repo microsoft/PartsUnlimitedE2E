@@ -16,11 +16,14 @@ namespace PartsUnlimited.Controllers
     {
         private readonly IPartsUnlimitedContext db;
         private readonly ITelemetryProvider telemetry;
+        private readonly IShippingTaxCalculator shippingTaxCalculator;
 
-        public ShoppingCartController(IPartsUnlimitedContext context, ITelemetryProvider telemetryProvider)
+		public ShoppingCartController(IPartsUnlimitedContext context, ITelemetryProvider telemetryProvider, 
+			IShippingTaxCalculator shippingTaxCalc)
         {
             db = context;
             telemetry = telemetryProvider;
+			shippingTaxCalculator = shippingTaxCalc;
         }
 
         //
@@ -30,20 +33,20 @@ namespace PartsUnlimited.Controllers
         {
             var cart = ShoppingCart.GetCart(db, HttpContext);
             var items = cart.GetCartItems();
-            var itemsCount = items.Sum(x => x.Count);
-            var subTotal = items.Sum(x => x.Count * x.Product.Price);
-            var shipping = itemsCount * (decimal)5.00;
-            var tax = (subTotal + shipping) * (decimal)0.05;
-            var total = subTotal + shipping + tax;
+			var itemsCount = items.Sum(x => x.Count);
+			//var subTotal = items.Sum(x => x.Count * x.Product.Price);
+			//var shipping = itemsCount * (decimal)5.00;
+			//var tax = (subTotal + shipping) * (decimal)0.05;
+			//var total = subTotal + shipping + tax;
 
-            var costSummary = new OrderCostSummary
-            {
-                CartSubTotal = subTotal.ToString("C"),
-                CartShipping = shipping.ToString("C"),
-                CartTax = tax.ToString("C"),
-                CartTotal = total.ToString("C")
-            };
-
+			//var costSummary = new OrderCostSummary
+			//{
+			//    CartSubTotal = subTotal.ToString("C"),
+			//    CartShipping = shipping.ToString("C"),
+			//    CartTax = tax.ToString("C"),
+			//    CartTotal = total.ToString("C")
+			//};
+			var costSummary = shippingTaxCalculator.CalculateCost(items);
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel

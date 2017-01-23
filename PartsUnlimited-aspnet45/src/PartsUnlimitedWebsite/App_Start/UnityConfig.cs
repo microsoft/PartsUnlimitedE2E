@@ -18,8 +18,9 @@ namespace PartsUnlimited
             container.RegisterType<IRecommendationEngine, AzureMLFrequentlyBoughtTogetherRecommendationEngine>();
             container.RegisterType<ITelemetryProvider, TelemetryProvider>();
             container.RegisterType<IProductSearch, StringContainsProductSearch>();
+            container.RegisterType<IShippingTaxCalculator, DefaultShippingTaxCalculator>();
 
-            container.RegisterInstance<IHttpClient>(container.Resolve<HttpClientWrapper>());
+			container.RegisterInstance<IHttpClient>(container.Resolve<HttpClientWrapper>());
 
             return container;
         }

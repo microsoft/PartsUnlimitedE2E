@@ -506,6 +506,8 @@
     <Compile Include="Hubs\AnnouncementHub.cs" />
     <Compile Include="Models\CommunityPost.cs" />
     <Compile Include="Models\OrderCostSummary.cs" />
+    <Compile Include="Utils\DefaultShippingTaxCalculator.cs" />
+    <Compile Include="Utils\IShippingTaxCalculator.cs" />
     <Compile Include="Utils\LayoutDataAttribute.cs" />
     <Compile Include="Utils\PartsUnlimitedDbInitializer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

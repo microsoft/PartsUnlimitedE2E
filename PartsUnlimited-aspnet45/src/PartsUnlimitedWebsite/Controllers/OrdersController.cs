@@ -15,11 +15,14 @@ namespace PartsUnlimited.Controllers
     {
         private readonly IOrdersQuery _ordersQuery;
         private readonly ITelemetryProvider _telemetry;
+		private readonly IShippingTaxCalculator _shippingTaxCalc;
 
-        public OrdersController(IOrdersQuery ordersQuery, ITelemetryProvider telemetryProvider)
+		public OrdersController(IOrdersQuery ordersQuery, ITelemetryProvider telemetryProvider,
+			IShippingTaxCalculator shippingTaxCalc)
         {
             _ordersQuery = ordersQuery;
             _telemetry = telemetryProvider;
+			_shippingTaxCalc = shippingTaxCalc;
         }
 
         public async Task<ActionResult> Index(DateTime? start, DateTime? end, string invalidOrderSearch)
@@ -72,16 +75,17 @@ namespace PartsUnlimited.Controllers
                 };
                 _telemetry.TrackEvent("Order/Server/Details", eventProperties, eventMeasurements);
 
-                var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
-                var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
-                var shipping = itemsCount * (decimal)6.00;
-                var tax = (subTotal + shipping) * (decimal)0.06;
-                var total = subTotal + shipping + tax;
+				costSummary = _shippingTaxCalc.CalculateCost(order.OrderDetails, order.PostalCode);
+                //var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
+                //var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
+                //var shipping = itemsCount * (decimal)6.00;
+                //var tax = (subTotal + shipping) * (decimal)0.06;
+                //var total = subTotal + shipping + tax;
 
-                costSummary.CartSubTotal = subTotal.ToString("C");
-                costSummary.CartShipping = shipping.ToString("C");
-                costSummary.CartTax = tax.ToString("C");
-                costSummary.CartTotal = total.ToString("C");
+                //costSummary.CartSubTotal = subTotal.ToString("C");
+                //costSummary.CartShipping = shipping.ToString("C");
+                //costSummary.CartTax = tax.ToString("C");
+                //costSummary.CartTotal = total.ToString("C");
             }
 
             var viewModel = new OrderDetailsViewModel
