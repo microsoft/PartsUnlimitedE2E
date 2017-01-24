@@ -75,18 +75,18 @@ namespace PartsUnlimited.Controllers
                 };
                 _telemetry.TrackEvent("Order/Server/Details", eventProperties, eventMeasurements);
 
-				costSummary = _shippingTaxCalc.CalculateCost(order.OrderDetails, order.PostalCode);
-                //var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
-                //var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
-                //var shipping = itemsCount * (decimal)6.00;
-                //var tax = (subTotal + shipping) * (decimal)0.06;
-                //var total = subTotal + shipping + tax;
+				//costSummary = _shippingTaxCalc.CalculateCost(order.OrderDetails, order.PostalCode);
+				var itemsCount = order.OrderDetails.Sum(x => x.Count);
+				var subTotal = order.OrderDetails.Sum(x => x.Count * x.Product.Price);
+				var shipping = itemsCount * (decimal)6.00;
+				var tax = (subTotal + shipping) * (decimal)0.06;
+				var total = subTotal + shipping + tax;
 
-                //costSummary.CartSubTotal = subTotal.ToString("C");
-                //costSummary.CartShipping = shipping.ToString("C");
-                //costSummary.CartTax = tax.ToString("C");
-                //costSummary.CartTotal = total.ToString("C");
-            }
+				costSummary.CartSubTotal = subTotal.ToString("C");
+				costSummary.CartShipping = shipping.ToString("C");
+				costSummary.CartTax = tax.ToString("C");
+				costSummary.CartTotal = total.ToString("C");
+			}
 
             var viewModel = new OrderDetailsViewModel
             {

@@ -150,7 +150,7 @@ namespace PartsUnlimited.UnitTests.Controllers
                 {
                     new OrderDetail()
                     {
-                        Quantity = 2,
+                        Count = 2,
                         Product = new Product()
                         {
                             Price = 10
@@ -158,7 +158,7 @@ namespace PartsUnlimited.UnitTests.Controllers
                     },
                     new OrderDetail()
                     {
-                        Quantity = 3,
+                        Count = 3,
                         Product = new Product()
                         {
                             Price = 5

@@ -46,7 +46,7 @@ namespace PartsUnlimited.Controllers
 			//    CartTax = tax.ToString("C"),
 			//    CartTotal = total.ToString("C")
 			//};
-			var costSummary = shippingTaxCalculator.CalculateCost(items);
+			var costSummary = shippingTaxCalculator.CalculateCost(items, null);
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel

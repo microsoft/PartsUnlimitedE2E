@@ -1,6 +1,6 @@
 ﻿namespace PartsUnlimited.Models
 {
-    public class OrderDetail
+    public class OrderDetail : ILineItem
     {
         public int OrderDetailId { get; set; }
 
@@ -8,7 +8,7 @@
 
         public int ProductId { get; set; }
 
-        public int Quantity { get; set; }
+        public int Count { get; set; }
 
         public decimal UnitPrice { get; set; }
 

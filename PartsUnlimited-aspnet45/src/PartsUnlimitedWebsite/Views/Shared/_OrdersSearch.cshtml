@@ -78,7 +78,7 @@
                             @foreach (var orderDetail in order.OrderDetails)
                             {
                                 <div class="col-xs-12 order-detail-item">
-                                    <h4><strong>@orderDetail.Quantity x @orderDetail.Product.Title</strong></h4>
+                                    <h4><strong>@orderDetail.Count x @orderDetail.Product.Title</strong></h4>
                                     <p>@orderDetail.UnitPrice</p>
                                 </div>
                             }

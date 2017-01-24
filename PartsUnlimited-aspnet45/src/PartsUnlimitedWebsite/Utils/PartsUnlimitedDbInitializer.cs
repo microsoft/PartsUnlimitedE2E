@@ -327,7 +327,7 @@ namespace PartsUnlimited.Utils
                     {
                         StoreId = store.StoreId,
                         Name = string.Format("John Smith{0}", random.Next()),
-                        Quantity = random.Next(1, 10),
+                        Count = random.Next(1, 10),
                         ProductId = products[random.Next(0, products.Count)].ProductId,
                         SalePrice = Math.Round(100 * random.NextDouble(), 2)
                     };

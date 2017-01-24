@@ -8,13 +8,18 @@ namespace PartsUnlimited.Utils
 {
 	public class DefaultShippingTaxCalculator : IShippingTaxCalculator
 	{
-		public OrderCostSummary CalculateCost(List<OrderDetail> orderDetails, string postalCode)
+		public OrderCostSummary CalculateCost(IEnumerable<ILineItem> items, string postalCode)
 		{
-			var subTotal = orderDetails.Sum(x => x.Quantity * x.Product.Price);
-			var itemsCount = orderDetails.Sum(x => x.Quantity);
-			var shipping = CalculateShipping(itemsCount);
-			var tax = CalculateTax(subTotal + shipping, postalCode);
-			var total = subTotal + shipping + tax;
+			decimal subTotal = 0, tax = 0, shipping = 0, total = 0;
+			int itemsCount = 0;
+			if (items != null)
+			{
+				subTotal = items.Sum(x => x.Count * x.Product.Price);
+				itemsCount = items.Sum(x => x.Count);
+				shipping = CalculateShipping(itemsCount);
+				tax = CalculateTax(subTotal + shipping, postalCode);
+				total = subTotal + shipping + tax;
+			}
 
 			return new OrderCostSummary()
 			{
@@ -25,27 +30,10 @@ namespace PartsUnlimited.Utils
 			};
 		}
 
-		public OrderCostSummary CalculateCost(List<CartItem> cartItems)
-		{
-			var itemsCount = cartItems.Sum(x => x.Count);
-			var subTotal = cartItems.Sum(x => x.Count * x.Product.Price);
-			var shipping = CalculateShipping(itemsCount);
-			var tax = CalculateTax(subTotal + shipping);
-			var total = subTotal + shipping + tax;
-
-			return new OrderCostSummary
-			{
-				CartSubTotal = subTotal.ToString("C"),
-				CartShipping = shipping.ToString("C"),
-				CartTax = tax.ToString("C"),
-				CartTotal = total.ToString("C")
-			};
-		}
-
-		protected decimal CalculateTax(decimal taxable, string postalCode = "")
+		protected decimal CalculateTax(decimal taxable, string postalCode = null)
 		{
 			var taxRate = (decimal)0.06;
-			if (postalCode.StartsWith("98"))
+			if (postalCode?.StartsWith("98") == true)
 			{
 				taxRate = (decimal)0.075;
 			}

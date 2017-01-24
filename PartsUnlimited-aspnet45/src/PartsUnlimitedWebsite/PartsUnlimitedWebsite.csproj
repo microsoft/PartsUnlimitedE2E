@@ -505,6 +505,7 @@
     </Compile>
     <Compile Include="Hubs\AnnouncementHub.cs" />
     <Compile Include="Models\CommunityPost.cs" />
+    <Compile Include="Models\ILineItem.cs" />
     <Compile Include="Models\OrderCostSummary.cs" />
     <Compile Include="Utils\DefaultShippingTaxCalculator.cs" />
     <Compile Include="Utils\IShippingTaxCalculator.cs" />

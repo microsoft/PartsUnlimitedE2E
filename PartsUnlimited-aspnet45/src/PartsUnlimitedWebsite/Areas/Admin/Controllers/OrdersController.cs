@@ -36,8 +36,8 @@ namespace PartsUnlimited.Areas.Admin.Controllers
                 return RedirectToAction("Index", new { invalidOrderSearch = id.ToString() });
             }
 
-            var itemsCount = order.OrderDetails.Sum(x => x.Quantity);
-            var subTotal = order.OrderDetails.Sum(x => x.Quantity * x.Product.Price);
+            var itemsCount = order.OrderDetails.Sum(x => x.Count);
+            var subTotal = order.OrderDetails.Sum(x => x.Count * x.Product.Price);
             var shipping = itemsCount * (decimal)5.00;
             var tax = (subTotal + shipping) * (decimal)0.05;
             var total = subTotal + shipping + tax;

@@ -10,7 +10,7 @@
 
         public virtual Product Product { get; set; }
 
-        public int Quantity { get; set; }
+        public int Count { get; set; }
 
         public double SalePrice { get; set; }
 

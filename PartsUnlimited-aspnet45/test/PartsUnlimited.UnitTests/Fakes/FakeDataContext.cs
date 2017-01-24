@@ -96,7 +96,7 @@ namespace PartsUnlimited.UnitTests.Fakes
                 orders.Add(new OrderDetail()
                 {
                     OrderDetailId = (product.ProductId * 100) + i,
-                    Quantity = 1,
+                    Count = 1,
                     UnitPrice = 125,
                     ProductId = product.ProductId
                 });
@@ -120,7 +120,7 @@ namespace PartsUnlimited.UnitTests.Fakes
                     {
                         OrderDetailId = 101,
                         ProductId = 1,
-                        Quantity = 1,
+                        Count = 1,
                         UnitPrice = 125,
                     }
                 }
@@ -136,7 +136,7 @@ namespace PartsUnlimited.UnitTests.Fakes
                         {
                             OrderDetailId = 102,
                             ProductId = 2,
-                            Quantity = 1,
+                            Count = 1,
                             UnitPrice = 125,
                         }
                     }
@@ -152,7 +152,7 @@ namespace PartsUnlimited.UnitTests.Fakes
                         {
                             OrderDetailId = 103,
                             ProductId = 3,
-                            Quantity = 1,
+                            Count = 1,
                             UnitPrice = 125,
                         }
                     }

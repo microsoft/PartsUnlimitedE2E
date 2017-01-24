@@ -45,7 +45,7 @@ namespace PartsUnlimited.Models
             }
             else
             {
-                // If the item does exist in the cart, then add one to the quantity
+                // If the item does exist in the cart, then add one to the count
                 cartItem.Count++;
             }
         }
@@ -141,7 +141,7 @@ namespace PartsUnlimited.Models
                     ProductId = item.ProductId,
                     OrderId = order.OrderId,
                     UnitPrice = product.Price,
-                    Quantity = item.Count,
+                    Count = item.Count,
                 };
 
                 // Set the order total of the shopping cart
