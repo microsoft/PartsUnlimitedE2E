@@ -33,7 +33,7 @@ namespace PartsUnlimited.ProductSearch
 			}
         }
 
-		private string Depluralize(string query)
+		public string Depluralize(string query)
 		{
 			if (query.EndsWith("ies"))
 			{
