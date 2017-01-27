@@ -7,6 +7,7 @@ using System.Linq;
 namespace FabrikamFiber.SeleniumTests
 {
     [TestClass]
+	[Ignore]
     public class PartsUnlimitedTests
     {
         static IWebDriver driver;

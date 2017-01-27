@@ -2,7 +2,7 @@
 using Moq;
 using PartsUnlimited.Controllers;
 using PartsUnlimited.Models;
-using PartsUnlimited.UnitTests.Fakes;
+using PartsUnlimited.UnitTests.Mocks;
 using PartsUnlimited.Utils;
 using PartsUnlimited.ViewModels;
 using System;
@@ -23,16 +23,16 @@ namespace PartsUnlimited.UnitTests.Controllers
         public async Task Order_Index()
         {
             // arrange
-            var fakeDb = new FakeDataContext();
-            var fakeModel = new OrdersModel(fakeDb.Orders.ToList(), "bob", new DateTimeOffset(), new DateTimeOffset(), null, false);
+            var mockDb = new MockDataContext();
+            var mockModel = new OrdersModel(mockDb.Orders.ToList(), "bob", new DateTimeOffset(), new DateTimeOffset(), null, false);
 
-            var fakeOrdersQuery = new Mock<IOrdersQuery>();
-            fakeOrdersQuery.Setup(o => o.IndexHelperAsync("bob", null, null, null, false))
-                .ReturnsAsync(fakeModel);
+            var mockOrdersQuery = new Mock<IOrdersQuery>();
+            mockOrdersQuery.Setup(o => o.IndexHelperAsync("bob", null, null, null, false))
+                .ReturnsAsync(mockModel);
 
-            var fakeTelemetryProvider = new Mock<ITelemetryProvider>();
-			var fakeShippingTaxCalc = new Mock<IShippingTaxCalculator>();
-            OrdersController controller = GetOrdersController(fakeOrdersQuery, fakeTelemetryProvider, fakeShippingTaxCalc);
+            var mockTelemetryProvider = new Mock<ITelemetryProvider>();
+			var mockShippingTaxCalc = new Mock<IShippingTaxCalculator>();
+            OrdersController controller = GetOrdersController(mockOrdersQuery, mockTelemetryProvider, mockShippingTaxCalc);
 
             // act
             var resultTask = await controller.Index(null, null, null);
@@ -40,23 +40,23 @@ namespace PartsUnlimited.UnitTests.Controllers
 
             // assert
             Assert.IsNotNull(viewResult);
-            fakeOrdersQuery.Verify(o => o.IndexHelperAsync("bob", null, null, null, false), Times.Once, "IndexHelperAsync not called correctly");
+            mockOrdersQuery.Verify(o => o.IndexHelperAsync("bob", null, null, null, false), Times.Once, "IndexHelperAsync not called correctly");
             var model = viewResult.Model as OrdersModel;
             Assert.IsNotNull(model);
-            Assert.AreSame(model, fakeModel);
+            Assert.AreSame(model, mockModel);
         }
 
         [TestMethod]
         public async Task Order_DetailWithNullId()
         {
             // arrange
-            var fakeOrdersQuery = new Mock<IOrdersQuery>();
-            var fakeTelemetryProvider = new Mock<ITelemetryProvider>();
-            var fakeShippingTaxCalc = new Mock<IShippingTaxCalculator>();
-			fakeTelemetryProvider.Setup(t => t.TrackTrace("Order/Server/NullId"));
+            var mockOrdersQuery = new Mock<IOrdersQuery>();
+            var mockTelemetryProvider = new Mock<ITelemetryProvider>();
+            var mockShippingTaxCalc = new Mock<IShippingTaxCalculator>();
+			mockTelemetryProvider.Setup(t => t.TrackTrace("Order/Server/NullId"));
             var queryString = new NameValueCollection();
             queryString.Add("id", null);
-            var controller = GetOrdersController(fakeOrdersQuery, fakeTelemetryProvider, fakeShippingTaxCalc, "bob", queryString);
+            var controller = GetOrdersController(mockOrdersQuery, mockTelemetryProvider, mockShippingTaxCalc, "bob", queryString);
 
             // act
             var resultTask = await controller.Details(null);
@@ -65,7 +65,7 @@ namespace PartsUnlimited.UnitTests.Controllers
             // assert
             Assert.IsTrue(redirect.RouteValues.Any(v => v.Key == "action" && v.Value.ToString() == "Index"));
             Assert.IsTrue(redirect.RouteValues.Any(v => v.Key == "invalidOrderSearch" && v.Value == null));
-            fakeTelemetryProvider.Verify(t => t.TrackTrace("Order/Server/NullId"), Times.Once);
+            mockTelemetryProvider.Verify(t => t.TrackTrace("Order/Server/NullId"), Times.Once);
         }
 
         [TestMethod]
@@ -77,15 +77,15 @@ namespace PartsUnlimited.UnitTests.Controllers
                 Username = "bob",
                 OrderId = 1
             };
-            var fakeOrdersQuery = new Mock<IOrdersQuery>();
-            fakeOrdersQuery.Setup(o => o.FindOrderAsync(1))
+            var mockOrdersQuery = new Mock<IOrdersQuery>();
+            mockOrdersQuery.Setup(o => o.FindOrderAsync(1))
                 .ReturnsAsync(order);
 
-            var fakeTelemetryProvider = new Mock<ITelemetryProvider>();
-            fakeTelemetryProvider.Setup(t => t.TrackTrace("Order/Server/UsernameMismatch"));
+            var mockTelemetryProvider = new Mock<ITelemetryProvider>();
+            mockTelemetryProvider.Setup(t => t.TrackTrace("Order/Server/UsernameMismatch"));
 
-            var fakeShippingTaxCalc = new Mock<IShippingTaxCalculator>();
-            var controller = GetOrdersController(fakeOrdersQuery, fakeTelemetryProvider, fakeShippingTaxCalc, "ted");
+            var mockShippingTaxCalc = new Mock<IShippingTaxCalculator>();
+            var controller = GetOrdersController(mockOrdersQuery, mockTelemetryProvider, mockShippingTaxCalc, "ted");
 
             // act
             var resultTask = await controller.Details(1);
@@ -94,7 +94,7 @@ namespace PartsUnlimited.UnitTests.Controllers
             // assert
             Assert.IsTrue(redirect.RouteValues.Any(v => v.Key == "action" && v.Value.ToString() == "Index"));
             Assert.IsTrue(redirect.RouteValues.Any(v => v.Key == "invalidOrderSearch" && v.Value.ToString() == "1"));
-            fakeTelemetryProvider.Verify(t => t.TrackTrace("Order/Server/UsernameMismatch"), Times.Once);
+            mockTelemetryProvider.Verify(t => t.TrackTrace("Order/Server/UsernameMismatch"), Times.Once);
         }
 
         [TestMethod]
@@ -106,8 +106,8 @@ namespace PartsUnlimited.UnitTests.Controllers
                 Username = "bob",
                 OrderId = 1
             };
-            var fakeOrdersQuery = new Mock<IOrdersQuery>();
-            fakeOrdersQuery.Setup(o => o.FindOrderAsync(1))
+            var mockOrdersQuery = new Mock<IOrdersQuery>();
+            mockOrdersQuery.Setup(o => o.FindOrderAsync(1))
                 .ReturnsAsync(order);
 
             var props = new Dictionary<string, string>()
@@ -116,11 +116,11 @@ namespace PartsUnlimited.UnitTests.Controllers
                 { "Username", "bob" }
             };
 
-            var fakeTelemetryProvider = new Mock<ITelemetryProvider>();
-            fakeTelemetryProvider.Setup(t => t.TrackEvent("Order/Server/NullDetails", props, null));
+            var mockTelemetryProvider = new Mock<ITelemetryProvider>();
+            mockTelemetryProvider.Setup(t => t.TrackEvent("Order/Server/NullDetails", props, null));
 
-			var fakeShippingTaxCalc = new Mock<IShippingTaxCalculator>();
-			var controller = GetOrdersController(fakeOrdersQuery, fakeTelemetryProvider, fakeShippingTaxCalc, "bob");
+			var mockShippingTaxCalc = new Mock<IShippingTaxCalculator>();
+			var controller = GetOrdersController(mockOrdersQuery, mockTelemetryProvider, mockShippingTaxCalc, "bob");
 
             // act
             var resultTask = await controller.Details(1);
@@ -135,7 +135,7 @@ namespace PartsUnlimited.UnitTests.Controllers
             Assert.AreEqual(0.ToString("C"), model.OrderCostSummary.CartTax);
             Assert.AreEqual(0.ToString("C"), model.OrderCostSummary.CartTotal);
             Assert.AreSame(order, model.Order);
-            fakeTelemetryProvider.Verify(t => t.TrackEvent("Order/Server/NullDetails", props, null), Times.Once);
+            mockTelemetryProvider.Verify(t => t.TrackEvent("Order/Server/NullDetails", props, null), Times.Once);
         }
 
         [TestMethod]
@@ -166,8 +166,8 @@ namespace PartsUnlimited.UnitTests.Controllers
                     }
                 }
             };
-            var fakeOrdersQuery = new Mock<IOrdersQuery>();
-            fakeOrdersQuery.Setup(o => o.FindOrderAsync(1))
+            var mockOrdersQuery = new Mock<IOrdersQuery>();
+            mockOrdersQuery.Setup(o => o.FindOrderAsync(1))
                 .ReturnsAsync(order);
 
             var props = new Dictionary<string, string>()
@@ -180,11 +180,11 @@ namespace PartsUnlimited.UnitTests.Controllers
                 { "LineItemCount", 2 }
             };
 
-            var fakeTelemetryProvider = new Mock<ITelemetryProvider>();
-            fakeTelemetryProvider.Setup(t => t.TrackEvent("Order/Server/Details", props, measures));
+            var mockTelemetryProvider = new Mock<ITelemetryProvider>();
+            mockTelemetryProvider.Setup(t => t.TrackEvent("Order/Server/Details", props, measures));
 
-			var fakeShippingTaxCalc = new Mock<IShippingTaxCalculator>();
-			var controller = GetOrdersController(fakeOrdersQuery, fakeTelemetryProvider, fakeShippingTaxCalc, "bob");
+			var mockShippingTaxCalc = new Mock<IShippingTaxCalculator>();
+			var controller = GetOrdersController(mockOrdersQuery, mockTelemetryProvider, mockShippingTaxCalc, "bob");
 
             // act
             var resultTask = await controller.Details(1);
@@ -199,13 +199,13 @@ namespace PartsUnlimited.UnitTests.Controllers
             //Assert.AreEqual(3.ToString("C"), model.OrderCostSummary.CartTax);
             //Assert.AreEqual(63.ToString("C"), model.OrderCostSummary.CartTotal);
             Assert.AreSame(order, model.Order);
-            fakeTelemetryProvider.Verify(t => t.TrackEvent("Order/Server/Details", props, measures), Times.Once);
+            mockTelemetryProvider.Verify(t => t.TrackEvent("Order/Server/Details", props, measures), Times.Once);
         }
 
-        private static OrdersController GetOrdersController(Mock<IOrdersQuery> fakeOrdersQuery, Mock<ITelemetryProvider> fakeTelemetryProvider,
-            Mock<IShippingTaxCalculator> fakeShippingTaxCalc, string username = "bob", NameValueCollection queryString = null)
+        private static OrdersController GetOrdersController(Mock<IOrdersQuery> mockOrdersQuery, Mock<ITelemetryProvider> mockTelemetryProvider,
+            Mock<IShippingTaxCalculator> mockShippingTaxCalc, string username = "bob", NameValueCollection queryString = null)
         {
-            var controller = new OrdersController(fakeOrdersQuery.Object, fakeTelemetryProvider.Object, fakeShippingTaxCalc.Object);
+            var controller = new OrdersController(mockOrdersQuery.Object, mockTelemetryProvider.Object, mockShippingTaxCalc.Object);
             controller.ControllerContext = new ControllerContext()
             {
                 Controller = controller,

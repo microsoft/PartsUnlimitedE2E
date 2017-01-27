@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.SeleniumTests
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "PartsUnlimitedEnv", "env\PartsUnlimitedEnv\PartsUnlimitedEnv.deployproj", "{922D935C-955F-4CB7-8686-815C6E9F9E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartsUnlimitedWebsite.Tests", "src\PartsUnlimitedWebsite.Tests\PartsUnlimitedWebsite.Tests.csproj", "{AA65F2AF-B262-4066-BEA4-37A38A91F29E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{922D935C-955F-4CB7-8686-815C6E9F9E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{922D935C-955F-4CB7-8686-815C6E9F9E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{922D935C-955F-4CB7-8686-815C6E9F9E73}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA65F2AF-B262-4066-BEA4-37A38A91F29E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA65F2AF-B262-4066-BEA4-37A38A91F29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA65F2AF-B262-4066-BEA4-37A38A91F29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA65F2AF-B262-4066-BEA4-37A38A91F29E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

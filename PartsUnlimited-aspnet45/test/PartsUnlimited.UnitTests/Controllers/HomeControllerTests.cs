@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PartsUnlimited.Controllers;
 using PartsUnlimited.Models;
-using PartsUnlimited.UnitTests.Fakes;
+using PartsUnlimited.UnitTests.Mocks;
 using PartsUnlimited.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace PartsUnlimited.UnitTests.Controllers
         public void Home_Index()
         {
             // arrange
-            var controller = new HomeController(new FakeDataContext());
+            var controller = new HomeController(new MockDataContext());
 
             // act
             ViewResult result = controller.Index() as ViewResult;

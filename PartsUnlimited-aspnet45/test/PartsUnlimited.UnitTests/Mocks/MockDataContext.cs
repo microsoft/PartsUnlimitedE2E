@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 
-namespace PartsUnlimited.UnitTests.Fakes
+namespace PartsUnlimited.UnitTests.Mocks
 {
-    public class FakeDataContext : IPartsUnlimitedContext
+    public class MockDataContext : IPartsUnlimitedContext
     {
-        public FakeDataContext()
+        public MockDataContext()
         {
             InitProducts();
             InitOrders();

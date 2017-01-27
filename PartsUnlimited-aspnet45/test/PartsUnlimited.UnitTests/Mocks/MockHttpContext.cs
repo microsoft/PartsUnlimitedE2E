@@ -9,25 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace PartsUnlimited.UnitTests.Fakes
+namespace PartsUnlimited.UnitTests.Mocks
 {
     public class MockHttpContext : HttpContextBase
     {
-        private Mock<HttpRequestBase> fakeRequest;
+        private Mock<HttpRequestBase> mockRequest;
         private readonly IPrincipal _user;
 
         public MockHttpContext(string username = "bob", NameValueCollection queryString = null)
         {
             _user = new GenericPrincipal(new GenericIdentity(username), null /* roles */);
 
-            fakeRequest = new Mock<HttpRequestBase>();
-            fakeRequest.Setup(r => r.Headers).Returns(
+            mockRequest = new Mock<HttpRequestBase>();
+            mockRequest.Setup(r => r.Headers).Returns(
                 new WebHeaderCollection()
                 {
                     { "X-Requested-With", "XMLHttpRequest" }
                 }
             );
-            fakeRequest.Setup(r => r.QueryString).Returns(queryString);
+            mockRequest.Setup(r => r.QueryString).Returns(queryString);
         }
 
 
@@ -47,7 +47,7 @@ namespace PartsUnlimited.UnitTests.Fakes
         {
             get
             {
-                return fakeRequest.Object;
+                return mockRequest.Object;
             }
         }
     }
