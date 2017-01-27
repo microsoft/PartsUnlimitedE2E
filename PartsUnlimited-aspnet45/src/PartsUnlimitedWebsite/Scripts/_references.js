@@ -1,5 +1,5 @@
-﻿/// <reference path="jquery-ui-1.11.4.js" />
-/// <reference path="jquery-1.9.1.js" />
+﻿/// <reference path="jquery-ui-1.12.1.js" />
+/// <reference path="jquery-3.1.1.js" />
 /// <reference path="modernizr-2.8.3.js" />
 /// <reference path="../gruntfile.js" />
 /// <reference path="AppInsights.js" />
