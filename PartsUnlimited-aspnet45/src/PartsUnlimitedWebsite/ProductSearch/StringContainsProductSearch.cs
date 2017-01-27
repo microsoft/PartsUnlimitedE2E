@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using PartsUnlimited.Models;
+using PartsUnlimited.Controllers;
 
 namespace PartsUnlimited.ProductSearch
 {
@@ -13,6 +14,8 @@ namespace PartsUnlimited.ProductSearch
 
         public StringContainsProductSearch(IPartsUnlimitedContext context)
         {
+			// silly demo of Live Dep Validation
+			//var ordersController = new CheckoutController(context);
             _context = context;
         }
 
