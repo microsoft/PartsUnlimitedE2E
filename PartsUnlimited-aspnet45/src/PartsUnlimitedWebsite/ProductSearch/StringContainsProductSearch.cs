@@ -16,6 +16,7 @@ namespace PartsUnlimited.ProductSearch
             _context = context;
         }
 
+		// TODO: Change this to return List of ProductViewModel?
         public async Task<IEnumerable<Product>> Search(string query)
         {
 			try
