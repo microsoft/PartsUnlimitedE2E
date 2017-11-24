@@ -5,82 +5,52 @@
         "WebsiteName": {
             "type": "string"
         },
-        "PartsUnlimitedServerName": {
+        "PUL_ServerName": {
             "type": "string"
         },
-        "PartsUnlimitedServerAdminLogin": {
+        "PUL_DBLogin": {
             "type": "string",
             "defaultValue": "AdminUser"
         },
-        "PartsUnlimitedServerAdminLoginPassword": {
+        "PUL_DBPassword": {
+            "type": "securestring",
+            "defaultValue": "P2ssw0rd"
+        },
+        "PUL_DBPasswordForTest": {
             "type": "securestring"
         },
-        "PartsUnlimitedServerAdminLoginPasswordForTest": {
-            "type": "securestring"
-        },
-        "PartsUnlimitedDBName": {
+        "PUL_DBName": {
             "type": "string",
             "defaultValue": "PartsUnlimitedDB"
         },
-        "PartsUnlimitedDBCollation": {
+        "PUL_DBCollation": {
             "type": "string",
             "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
         },
-        "PartsUnlimitedDBEdition": {
+        "PUL_DBEdition": {
             "type": "string",
-            "defaultValue": "Basic",
-            "allowedValues": [
-                "Basic",
-                "Business",
-                "Premium",
-                "Standard",
-                "Web"
-            ]
+            "defaultValue": "Basic"           
         },
-        "PartsUnlimitedHostingPlanName": {
+        "PUL_HostingPlanName": {
             "type": "string"
         },
-        "PartsUnlimitedHostingPlanSKU": {
+        "PUL_HostingPlanSKU": {
             "type": "string",
-            "allowedValues": [
-                "Standard"
-            ],
+           
             "defaultValue": "Standard"
         },
-        "PartsUnlimitedHostingPlanWorkerSize": {
+        "PUL_HostingPlanWorkerSize": {
             "type": "string",
-            "allowedValues": [
-                "0",
-                "1",
-                "2"
-            ],
+           
             "defaultValue": "0"
         },
         "EnableRules": {
             "type": "bool",
             "defaultValue": false
-        },
-        "CdnStorageAccountName": {
-            "type": "string"
-        },
-        "CdnStorageContainerName": {
-            "type": "string"
-        },
-        "CdnStorageAccountNameForDev": {
-            "type": "string"
-        },
-        "CdnStorageContainerNameForDev": {
-            "type": "string"
-        },
-        "CdnStorageAccountNameForStaging": {
-            "type": "string"
-        },
-        "CdnStorageContainerNameForStaging": {
-            "type": "string"
-        }
+        }      
     },
     "variables": {
-        "PartsUnlimitedServerName": "[toLower(parameters('PartsUnlimitedServerName'))]",
+        "PartsUnlimitedServerName": "[toLower(parameters('PUL_ServerName'))]",
         "PartsUnlimitedServerNameDev": "[concat(variables('PartsUnlimitedServerName'), 'dev')]",
         "PartsUnlimitedServerNameStage": "[concat(variables('PartsUnlimitedServerName'), 'stage')]"
     },
@@ -94,8 +64,8 @@
                 "displayName": "PartsUnlimitedServer"
             },
             "properties": {
-                "administratorLogin": "[parameters('PartsUnlimitedServerAdminLogin')]",
-                "administratorLoginPassword": "[parameters('PartsUnlimitedServerAdminLoginPassword')]"
+                "administratorLogin": "[parameters('PUL_DBLogin')]",
+                "administratorLoginPassword": "[parameters('PUL_DBPassword')]"
             },
             "resources": [
                 {
@@ -112,7 +82,7 @@
                     }
                 },
                 {
-                    "name": "[parameters('PartsUnlimitedDBName')]",
+                    "name": "[parameters('PUL_DBName')]",
                     "type": "databases",
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
@@ -123,8 +93,8 @@
                         "displayName": "PartsUnlimitedDB"
                     },
                     "properties": {
-                        "collation": "[parameters('PartsUnlimitedDBCollation')]",
-                        "edition": "[parameters('PartsUnlimitedDBEdition')]",
+                        "collation": "[parameters('PUL_DBCollation')]",
+                        "edition": "[parameters('PUL_DBEdition')]",
                         "maxSizeBytes": "1073741824"
                     }
                 }
@@ -140,8 +110,8 @@
                 "displayName": "PartsUnlimitedServer"
             },
             "properties": {
-                "administratorLogin": "[parameters('PartsUnlimitedServerAdminLogin')]",
-                "administratorLoginPassword": "[parameters('PartsUnlimitedServerAdminLoginPasswordForTest')]"
+                "administratorLogin": "[parameters('PUL_DBLogin')]",
+                "administratorLoginPassword": "[parameters('PUL_DBPasswordForTest')]"
             },
             "resources": [
                 {
@@ -158,7 +128,7 @@
                     }
                 },
                 {
-                    "name": "[parameters('PartsUnlimitedDBName')]",
+                    "name": "[parameters('PUL_DBName')]",
                     "type": "databases",
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
@@ -169,8 +139,8 @@
                         "displayName": "PartsUnlimitedDB"
                     },
                     "properties": {
-                        "collation": "[parameters('PartsUnlimitedDBCollation')]",
-                        "edition": "[parameters('PartsUnlimitedDBEdition')]",
+                        "collation": "[parameters('PUL_DBCollation')]",
+                        "edition": "[parameters('PUL_DBEdition')]",
                         "maxSizeBytes": "1073741824"
                     }
                 }
@@ -186,8 +156,8 @@
                 "displayName": "PartsUnlimitedServer"
             },
             "properties": {
-                "administratorLogin": "[parameters('PartsUnlimitedServerAdminLogin')]",
-                "administratorLoginPassword": "[parameters('PartsUnlimitedServerAdminLoginPasswordForTest')]"
+                "administratorLogin": "[parameters('PUL_DBLogin')]",
+                "administratorLoginPassword": "[parameters('PUL_DBPasswordForTest')]"
             },
             "resources": [
                 {
@@ -204,7 +174,7 @@
                     }
                 },
                 {
-                    "name": "[parameters('PartsUnlimitedDBName')]",
+                    "name": "[parameters('PUL_DBName')]",
                     "type": "databases",
                     "location": "[resourceGroup().location]",
                     "apiVersion": "2014-04-01-preview",
@@ -215,8 +185,8 @@
                         "displayName": "PartsUnlimitedDB"
                     },
                     "properties": {
-                        "collation": "[parameters('PartsUnlimitedDBCollation')]",
-                        "edition": "[parameters('PartsUnlimitedDBEdition')]",
+                        "collation": "[parameters('PUL_DBCollation')]",
+                        "edition": "[parameters('PUL_DBEdition')]",
                         "maxSizeBytes": "1073741824"
                     }
                 }
@@ -259,7 +229,7 @@
             }
         },
         {
-            "name": "[parameters('PartsUnlimitedHostingPlanName')]",
+            "name": "[parameters('PUL_HostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[resourceGroup().location]",
             "apiVersion": "2014-06-01",
@@ -268,26 +238,26 @@
                 "displayName": "PartsUnlimitedHostingPlan"
             },
             "properties": {
-                "name": "[parameters('PartsUnlimitedHostingPlanName')]",
-                "sku": "[parameters('PartsUnlimitedHostingPlanSKU')]",
-                "workerSize": "[parameters('PartsUnlimitedHostingPlanWorkerSize')]",
+                "name": "[parameters('PUL_HostingPlanName')]",
+                "sku": "[parameters('PUL_HostingPlanSKU')]",
+                "workerSize": "[parameters('PUL_HostingPlanWorkerSize')]",
                 "numberOfWorkers": 1
             }
         },
         {
-            "name": "[concat(parameters('PartsUnlimitedHostingPlanName'), '-', resourceGroup().name)]",
+            "name": "[concat(parameters('PUL_HostingPlanName'), '-', resourceGroup().name)]",
             "type": "Microsoft.Insights/autoscalesettings",
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PartsUnlimitedHostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
             ],
             "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
                 "displayName": "WebsiteHostingPlanAutoScale"
             },
             "properties": {
-                "name": "[concat(parameters('PartsUnlimitedHostingPlanName'), '-', resourceGroup().name)]",
+                "name": "[concat(parameters('PUL_HostingPlanName'), '-', resourceGroup().name)]",
                 "profiles": [
                     {
                         "name": "Default",
@@ -300,7 +270,7 @@
                             {
                                 "metricTrigger": {
                                     "metricName": "CpuPercentage",
-                                    "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]",
+                                    "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
                                     "timeGrain": "PT1M",
                                     "statistic": "Average",
                                     "timeWindow": "PT10M",
@@ -318,7 +288,7 @@
                             {
                                 "metricTrigger": {
                                     "metricName": "CpuPercentage",
-                                    "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]",
+                                    "metricResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
                                     "timeGrain": "PT1M",
                                     "statistic": "Average",
                                     "timeWindow": "PT1H",
@@ -337,30 +307,30 @@
                     }
                 ],
                 "enabled": "[parameters('EnableRules')]",
-                "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]"
+                "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]"
             }
         },
         {
-            "name": "[concat('CPUHigh ', parameters('PartsUnlimitedHostingPlanName'))]",
+            "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
             "type": "Microsoft.Insights/alertrules",
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PartsUnlimitedHostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
             ],
             "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
                 "displayName": "WebsiteHostingPlanAlertRuleCPUHigh"
             },
             "properties": {
-                "name": "[concat('CPUHigh ', parameters('PartsUnlimitedHostingPlanName'))]",
-                "description": "[concat('The average CPU is high across all the instances of ', parameters('PartsUnlimitedHostingPlanName'))]",
+                "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
+                "description": "[concat('The average CPU is high across all the instances of ', parameters('PUL_HostingPlanName'))]",
                 "isEnabled": "[parameters('EnableRules')]",
                 "condition": {
                     "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
                     "dataSource": {
                         "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]",
+                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
                         "metricName": "CpuPercentage"
                     },
                     "operator": "GreaterThan",
@@ -375,26 +345,26 @@
             }
         },
         {
-            "name": "[concat('LongHttpQueue ', parameters('PartsUnlimitedHostingPlanName'))]",
+            "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
             "type": "Microsoft.Insights/alertrules",
             "location": "East US",
             "apiVersion": "2014-04-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PartsUnlimitedHostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
             ],
             "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
                 "displayName": "WebsiteHostingPlanAlertRuleLongHttpQueue"
             },
             "properties": {
-                "name": "[concat('LongHttpQueue ', parameters('PartsUnlimitedHostingPlanName'))]",
-                "description": "[concat('The HTTP queue for the instances of ', parameters('PartsUnlimitedHostingPlanName'), ' has a large number of pending requests.')]",
+                "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
+                "description": "[concat('The HTTP queue for the instances of ', parameters('PUL_HostingPlanName'), ' has a large number of pending requests.')]",
                 "isEnabled": "[parameters('EnableRules')]",
                 "condition": {
                     "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
                     "dataSource": {
                         "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]",
+                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
                         "metricName": "HttpQueueLength"
                     },
                     "operator": "GreaterThan",
@@ -412,7 +382,7 @@
             "name": "[parameters('WebSiteName')]",
             "type": "Microsoft.Web/sites",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PartsUnlimitedHostingPlanName'))]",
+                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]",
                 "[resourceId('Microsoft.Sql/servers', variables('PartsUnlimitedServerName'))]",
                 "[resourceId('Microsoft.Sql/servers', variables('PartsUnlimitedServerNameDev'))]",
                 "[resourceId('Microsoft.Sql/servers', variables('PartsUnlimitedServerNameStage'))]",
@@ -423,12 +393,12 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2014-06-01",
             "tags": {
-                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PartsUnlimitedHostingPlanName'))]": "Resource",
+                "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
                 "displayName": "PartsUnlimitedWebsite"
             },
             "properties": {
                 "name": "[parameters('WebsiteName')]",
-                "serverFarm": "[parameters('PartsUnlimitedHostingPlanName')]"
+                "serverFarm": "[parameters('PUL_HostingPlanName')]"
             },
             "resources": [
                 {
@@ -440,7 +410,7 @@
                     ],
                     "properties": {
                         "DefaultConnectionString": {
-                            "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerName'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPassword'), ';')]",
+                            "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PUL_DBName'), ';User Id=', parameters ('PUL_DBLogin'), '@', variables('PartsUnlimitedServerName'), ';Password=', parameters('PUL_DBPassword'), ';')]",
                             "type": "SQLAzure"
                         }
                     }
@@ -488,7 +458,7 @@
                             ],
                             "properties": {
                                 "DefaultConnectionString": {
-                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameDev'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerNameDev'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPasswordForTest'), ';')]",
+                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameDev'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PUL_DBName'), ';User Id=', parameters ('PUL_DBLogin'), '@', variables('PartsUnlimitedServerNameDev'), ';Password=', parameters('PUL_DBPasswordForTest'), ';')]",
                                     "type": "SQLAzure"
                                 }
                             }
@@ -526,7 +496,7 @@
                             ],
                             "properties": {
                                 "DefaultConnectionString": {
-                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameStage'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PartsUnlimitedDBName'), ';User Id=', parameters ('PartsUnlimitedServerAdminLogin'), '@', variables('PartsUnlimitedServerNameStage'), ';Password=', parameters('PartsUnlimitedServerAdminLoginPasswordForTest'), ';')]",
+                                    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('PartsUnlimitedServerNameStage'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('PUL_DBName'), ';User Id=', parameters ('PUL_DBLogin'), '@', variables('PartsUnlimitedServerNameStage'), ';Password=', parameters('PUL_DBPasswordForTest'), ';')]",
                                     "type": "SQLAzure"
                                 }
                             }
