@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "WebsiteName": {
+      "value": null
+    },
+    "PUL_ServerName": {
+      "value": null
+    },
+    "PUL_DBLogin": {
+      "value": "AdminUser"
+    },
+    "PUL_DBPassword": {
+      "value": "P2ssw0rd"
+    },
+    "PUL_DBPasswordForTest": {
+      "value": "P2ssw0rd"
+    },
+    "PUL_DBName": {
+      "value": "PartsUnlimitedDB"
+    },
+    "PUL_DBCollation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "PUL_DBEdition": {
+      "value": "Basic"
+    },
+    "PUL_HostingPlanName": {
+      "value": null
+    },
+    "PUL_HostingPlanSKU": {
+      "value": "Standard"
+    },
+    "PUL_HostingPlanWorkerSize": {
+      "value": "0"
+    },
+    "EnableRules": {
+      "value": false
+    }
+  }
+}

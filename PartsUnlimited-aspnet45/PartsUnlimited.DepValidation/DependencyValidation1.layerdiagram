@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="35b75aa9-6c65-436e-b521-2ce873709564" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="494ad810-202e-4b4a-b2dd-d3dd12285938" name="PartsUnlimited.ProductSearch">
+      <references>
+        <reference Id="4826a260-d1f0-42fb-9799-e6f36f993a49" name="PartsUnlimited.ProductSearch">
+          <ArtifactNode Label="PartsUnlimited.ProductSearch" Category="CodeSchema_Namespace" Id="(Namespace=PartsUnlimited.ProductSearch)" />
+          <ExpandedNode Id="(Namespace=PartsUnlimited.ProductSearch)" Label="PartsUnlimited.ProductSearch" Category="CodeSchema_Namespace">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="9382c204-bbc3-4e39-b1ca-f42289956bd0" name="PartsUnlimited.Controllers">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="9ee2ee41-17e6-45e7-b12e-32783bff7972" direction="Forward">
+          <layerMoniker Id="494ad810-202e-4b4a-b2dd-d3dd12285938" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="8c026567-c193-4b1a-a941-005272e652b0" direction="Forward">
+          <layerMoniker Id="025d8e1e-c5ba-433b-80e1-1cef03e5863d" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="03bb70a5-5aa4-4ce0-b9a9-4e9c3bb3b9c0" name="PartsUnlimited.Controllers">
+          <ArtifactNode Label="PartsUnlimited.Controllers" Category="CodeSchema_Namespace" Id="(Namespace=PartsUnlimited.Controllers)" />
+          <ExpandedNode Id="(Namespace=PartsUnlimited.Controllers)" Label="PartsUnlimited.Controllers" Category="CodeSchema_Namespace">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="025d8e1e-c5ba-433b-80e1-1cef03e5863d" name="PartsUnlimited.ViewModels">
+      <references>
+        <reference Id="21f50bfa-05be-4604-97f7-9c23d9dd3bf1" name="PartsUnlimited.ViewModels">
+          <ArtifactNode Label="PartsUnlimited.ViewModels" Category="CodeSchema_Namespace" Id="(Namespace=PartsUnlimited.ViewModels)" />
+          <ExpandedNode Id="(Namespace=PartsUnlimited.ViewModels)" Label="PartsUnlimited.ViewModels" Category="CodeSchema_Namespace">
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>
