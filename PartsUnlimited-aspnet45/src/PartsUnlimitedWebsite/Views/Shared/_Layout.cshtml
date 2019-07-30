@@ -37,7 +37,7 @@
                             <img src="/Images/unlimited_logo.png" alt="Parts Unlimited logo" />
                         </a>
                         <a class="block" href="@Url.Action("Index", "Home", new { Area = string.Empty })">
-                            <h1>Parts Unlimited</h1>
+                            <h1>Parts Unlimited v4.0 pipeline</h1>
                             <h2>a Fabrikam subsidiary</h2>
                         </a>
 
@@ -60,8 +60,8 @@
                                     <div id="search-link-box">
                                         @using (Html.BeginForm("Index", "Search", new { Area = string.Empty }, FormMethod.Get))
                                         {
-                                            @Html.TextBox("q", null, new { @class = "form-control", id = "search-box", placeholder = "Keyword" })
-                                            <input type="submit" id="search-link" value="Search" />
+                                        @Html.TextBox("q", null, new { @class = "form-control", id = "search-box", placeholder = "Keyword" })
+                                        <input type="submit" id="search-link" value="Search" />
                                         }
                                     </div>
                                 </li>
