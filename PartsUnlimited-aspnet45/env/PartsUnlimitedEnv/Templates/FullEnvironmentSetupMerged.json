@@ -310,74 +310,74 @@
                 "targetResourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]"
             }
         },
-        {
-            "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
-            "type": "Microsoft.Insights/alertrules",
-            "location": "East US",
-            "apiVersion": "2014-04-01",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
-            ],
-            "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
-                "displayName": "WebsiteHostingPlanAlertRuleCPUHigh"
-            },
-            "properties": {
-                "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
-                "description": "[concat('The average CPU is high across all the instances of ', parameters('PUL_HostingPlanName'))]",
-                "isEnabled": "[parameters('EnableRules')]",
-                "condition": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
-                        "metricName": "CpuPercentage"
-                    },
-                    "operator": "GreaterThan",
-                    "threshold": 90,
-                    "windowSize": "PT15M"
-                },
-                "action": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
-                    "sendToServiceOwners": true,
-                    "customEmails": [ ]
-                }
-            }
-        },
-        {
-            "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
-            "type": "Microsoft.Insights/alertrules",
-            "location": "East US",
-            "apiVersion": "2014-04-01",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
-            ],
-            "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
-                "displayName": "WebsiteHostingPlanAlertRuleLongHttpQueue"
-            },
-            "properties": {
-                "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
-                "description": "[concat('The HTTP queue for the instances of ', parameters('PUL_HostingPlanName'), ' has a large number of pending requests.')]",
-                "isEnabled": "[parameters('EnableRules')]",
-                "condition": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
-                        "metricName": "HttpQueueLength"
-                    },
-                    "operator": "GreaterThan",
-                    "threshold": 100,
-                    "windowSize": "PT5M"
-                },
-                "action": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
-                    "sendToServiceOwners": true,
-                    "customEmails": [ ]
-                }
-            }
-        },
+        // {
+        //     "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
+        //     "type": "Microsoft.Insights/alertrules",
+        //     "location": "East US",
+        //     "apiVersion": "2014-04-01",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
+        //     ],
+        //     "tags": {
+        //         "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
+        //         "displayName": "WebsiteHostingPlanAlertRuleCPUHigh"
+        //     },
+        //     "properties": {
+        //         "name": "[concat('CPUHigh ', parameters('PUL_HostingPlanName'))]",
+        //         "description": "[concat('The average CPU is high across all the instances of ', parameters('PUL_HostingPlanName'))]",
+        //         "isEnabled": "[parameters('EnableRules')]",
+        //         "condition": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+        //             "dataSource": {
+        //                 "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+        //                 "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
+        //                 "metricName": "CpuPercentage"
+        //             },
+        //             "operator": "GreaterThan",
+        //             "threshold": 90,
+        //             "windowSize": "PT15M"
+        //         },
+        //         "action": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+        //             "sendToServiceOwners": true,
+        //             "customEmails": [ ]
+        //         }
+        //     }
+        // },
+        // {
+        //     "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
+        //     "type": "Microsoft.Insights/alertrules",
+        //     "location": "East US",
+        //     "apiVersion": "2014-04-01",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Web/serverfarms', parameters('PUL_HostingPlanName'))]"
+        //     ],
+        //     "tags": {
+        //         "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]": "Resource",
+        //         "displayName": "WebsiteHostingPlanAlertRuleLongHttpQueue"
+        //     },
+        //     "properties": {
+        //         "name": "[concat('LongHttpQueue ', parameters('PUL_HostingPlanName'))]",
+        //         "description": "[concat('The HTTP queue for the instances of ', parameters('PUL_HostingPlanName'), ' has a large number of pending requests.')]",
+        //         "isEnabled": "[parameters('EnableRules')]",
+        //         "condition": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+        //             "dataSource": {
+        //                 "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+        //                 "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('PUL_HostingPlanName'))]",
+        //                 "metricName": "HttpQueueLength"
+        //             },
+        //             "operator": "GreaterThan",
+        //             "threshold": 100,
+        //             "windowSize": "PT5M"
+        //         },
+        //         "action": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+        //             "sendToServiceOwners": true,
+        //             "customEmails": [ ]
+        //         }
+        //     }
+        // },
         {
             "name": "[parameters('WebSiteName')]",
             "type": "Microsoft.Web/sites",
@@ -515,73 +515,73 @@
                     ]
                 }
             ]
-        },
-        {
-            "name": "[concat('ServerErrors ', parameters('WebsiteName'))]",
-            "type": "Microsoft.Insights/alertrules",
-            "location": "East US",
-            "apiVersion": "2014-04-01",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('WebSiteName'))]"
-            ],
-            "tags": {
-                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]": "Resource",
-                "displayName": "WebsiteAlertRuleServerErrors"
-            },
-            "properties": {
-                "name": "[concat('ServerErrors ', parameters('WebsiteName'))]",
-                "description": "[concat(parameters('WebsiteName'), ' has some server errors, status code 5xx.')]",
-                "isEnabled": "[parameters('EnableRules')]",
-                "condition": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]",
-                        "metricName": "Http5xx"
-                    },
-                    "operator": "GreaterThan",
-                    "threshold": 0,
-                    "windowSize": "PT5M"
-                },
-                "action": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
-                    "sendToServiceOwners": true,
-                    "customEmails": [ ]
-                }
-            }
-        },
-        {
-            "name": "[concat('ForbiddenRequests ', parameters('WebsiteName'))]",
-            "type": "Microsoft.Insights/alertrules",
-            "location": "East US",
-            "apiVersion": "2014-04-01",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('WebsiteName'))]"
-            ],
-            "tags": {
-                "displayName": "WebsiteAlertRuleForbiddenRequests"
-            },
-            "properties": {
-                "name": "[concat('ForbiddenRequests ', parameters('WebsiteName'))]",
-                "description": "[concat(parameters('WebsiteName'), ' has some requests that are forbidden, status code 403.')]",
-                "isEnabled": "[parameters('EnableRules')]",
-                "condition": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
-                        "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]",
-                        "metricName": "Http403"
-                    },
-                    "operator": "GreaterThan",
-                    "threshold": 0,
-                    "windowSize": "PT5M"
-                },
-                "action": {
-                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
-                    "sendToServiceOwners": true,
-                    "customEmails": [ ]
-                }
-            }
         }
+        // {
+        //     "name": "[concat('ServerErrors ', parameters('WebsiteName'))]",
+        //     "type": "Microsoft.Insights/alertrules",
+        //     "location": "East US",
+        //     "apiVersion": "2014-04-01",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Web/sites', parameters('WebSiteName'))]"
+        //     ],
+        //     "tags": {
+        //         "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]": "Resource",
+        //         "displayName": "WebsiteAlertRuleServerErrors"
+        //     },
+        //     "properties": {
+        //         "name": "[concat('ServerErrors ', parameters('WebsiteName'))]",
+        //         "description": "[concat(parameters('WebsiteName'), ' has some server errors, status code 5xx.')]",
+        //         "isEnabled": "[parameters('EnableRules')]",
+        //         "condition": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+        //             "dataSource": {
+        //                 "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+        //                 "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]",
+        //                 "metricName": "Http5xx"
+        //             },
+        //             "operator": "GreaterThan",
+        //             "threshold": 0,
+        //             "windowSize": "PT5M"
+        //         },
+        //         "action": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+        //             "sendToServiceOwners": true,
+        //             "customEmails": [ ]
+        //         }
+        //     }
+        // },
+        // {
+        //     "name": "[concat('ForbiddenRequests ', parameters('WebsiteName'))]",
+        //     "type": "Microsoft.Insights/alertrules",
+        //     "location": "East US",
+        //     "apiVersion": "2014-04-01",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Web/sites', parameters('WebsiteName'))]"
+        //     ],
+        //     "tags": {
+        //         "displayName": "WebsiteAlertRuleForbiddenRequests"
+        //     },
+        //     "properties": {
+        //         "name": "[concat('ForbiddenRequests ', parameters('WebsiteName'))]",
+        //         "description": "[concat(parameters('WebsiteName'), ' has some requests that are forbidden, status code 403.')]",
+        //         "isEnabled": "[parameters('EnableRules')]",
+        //         "condition": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition",
+        //             "dataSource": {
+        //                 "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource",
+        //                 "resourceUri": "[concat(resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('WebsiteName'))]",
+        //                 "metricName": "Http403"
+        //             },
+        //             "operator": "GreaterThan",
+        //             "threshold": 0,
+        //             "windowSize": "PT5M"
+        //         },
+        //         "action": {
+        //             "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction",
+        //             "sendToServiceOwners": true,
+        //             "customEmails": [ ]
+        //         }
+        //     }
+        // }
     ]
 }
