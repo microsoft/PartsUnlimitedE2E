@@ -6,6 +6,7 @@ namespace PartsUnlimited
 {
   public static class Bootstrapper
   {
+        public static string test = "test";
     public static IUnityContainer Initialise()
     {
       var container = BuildUnityContainer();
