@@ -5,6 +5,7 @@ namespace PartsUnlimited.Models
 // Vitalii Tsurkan third change
 // For pull request
 {
+    //Added some changes
     public class Category
     {
         public int CategoryId { get; set; }
