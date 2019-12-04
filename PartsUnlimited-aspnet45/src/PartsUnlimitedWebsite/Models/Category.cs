@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace PartsUnlimited.Models
+// Vitalii Tsurkan third change
 {
     public class Category
     {
