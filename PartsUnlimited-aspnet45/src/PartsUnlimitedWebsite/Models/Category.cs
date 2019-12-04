@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PartsUnlimited.Models
 // Vitalii Tsurkan third change
 // For pull request
+// text
 {
     public class Category
     {
