@@ -5,7 +5,10 @@ namespace PartsUnlimited.Models
 {
     public class CartItem : ILineItem
     {
+<<<<<<< HEAD
         // My second change.
+=======
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
         [Key]
         public int CartItemId { get; set; }
 

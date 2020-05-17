@@ -17,6 +17,7 @@
 [Rr]eleases/
 x64/
 x86/
+<<<<<<< HEAD
 build/
 bld/
 [Bb]in/
@@ -24,6 +25,17 @@ bld/
 
 # Visual Studio 2015 cache/options directory
 .vs/
+=======
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -74,14 +86,27 @@ _Chutzpah*
 ipch/
 *.aps
 *.ncb
+<<<<<<< HEAD
 *.opensdf
 *.sdf
 *.cachefile
+=======
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 
 # Visual Studio profiler
 *.psess
 *.vsp
 *.vspx
+<<<<<<< HEAD
+=======
+*.sap
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 
 # TFS 2012 Local Workspace
 $tf/
@@ -106,6 +131,10 @@ _TeamCity*
 # NCrunch
 _NCrunch_*
 .*crunch*.local.xml
+<<<<<<< HEAD
+=======
+nCrunchTemp_*
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 
 # MightyMoose
 *.mm.*
@@ -133,6 +162,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
+<<<<<<< HEAD
 ## TODO: Comment the next line if you want to checkin your
 ## web deploy settings but do note that will include unencrypted
 ## passwords
@@ -140,6 +170,18 @@ publish/
 
 *.publishproj
 
+=======
+# TODO: Comment the next line if you want to checkin your web deploy settings
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+PublishScripts/
+
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
@@ -148,6 +190,7 @@ publish/
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
+<<<<<<< HEAD
 
 # Windows Azure Build Output
 csx/
@@ -155,6 +198,25 @@ csx/
 
 # Windows Store app package directory
 AppPackages/
+=======
+# NuGet v3's project.json files produces more ignoreable files
+*.nuget.props
+*.nuget.targets
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -164,7 +226,10 @@ AppPackages/
 
 # Others
 ClientBin/
+<<<<<<< HEAD
 [Ss]tyle[Cc]op.*
+=======
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 ~$*
 *~
 *.dbmdl
@@ -174,6 +239,13 @@ ClientBin/
 node_modules/
 orleans.codegen.cs
 
+<<<<<<< HEAD
+=======
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 # RIA/Silverlight projects
 Generated_Code/
 
@@ -197,6 +269,12 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
+<<<<<<< HEAD
+=======
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 
@@ -206,7 +284,28 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
+<<<<<<< HEAD
 # LightSwitch generated files
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+=======
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba

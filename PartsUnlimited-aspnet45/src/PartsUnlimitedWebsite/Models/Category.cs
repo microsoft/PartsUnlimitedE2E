@@ -5,7 +5,10 @@ namespace PartsUnlimited.Models
 {
     public class Category
     {
+<<<<<<< HEAD
         //Testing , pull request.002
+=======
+>>>>>>> b5eaa596236a12599bdc1c7575f66fdd1d9991ba
         public int CategoryId { get; set; }
 
         [Required]
