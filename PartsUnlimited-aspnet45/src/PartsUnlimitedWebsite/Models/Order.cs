@@ -5,6 +5,7 @@ using System.Web.ModelBinding;
 namespace PartsUnlimited.Models
 {
     //[Bind(Include = "FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email")]
+    ///Delete
     public class Order
     {
         [BindNever]
