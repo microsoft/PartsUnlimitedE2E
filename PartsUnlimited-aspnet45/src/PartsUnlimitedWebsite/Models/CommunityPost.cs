@@ -3,6 +3,7 @@
 namespace PartsUnlimited.Models
 {
 ///Changes to brachs
+///Changes to branchs
     public class CommunityPost
     {
         public string Image { get; set; }
