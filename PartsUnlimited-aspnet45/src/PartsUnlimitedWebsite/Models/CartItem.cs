@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PartsUnlimited.Models
 {
+    //Version 1 Branch changes - Version1Branch
     public class CartItem : ILineItem
     {
         [Key]
