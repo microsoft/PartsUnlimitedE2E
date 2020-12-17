@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PartsUnlimited.Models
 {
     
-    // This is my first change 
+    // This change is done in feature branch 
     public class Category
     {
         public int CategoryId { get; set; }
@@ -15,6 +15,8 @@ namespace PartsUnlimited.Models
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public string LargeImageUrl {get;set;}
 
         public List<Product> Products { get; set; }
     }
