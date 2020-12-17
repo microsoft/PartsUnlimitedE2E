@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PartsUnlimited.Models
 {
     //This is my first change DevOps
-    //DevOps with Navin Tyagi from git
+    //DevOps with Navin Tyagi from git 
     public class Category
     {
         public int CategoryId { get; set; }
