@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PartsUnlimited.Models
 {
+    //This is the fist change in the code for model folder.
     public class Category
     {
         public int CategoryId { get; set; }
