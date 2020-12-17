@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PartsUnlimited.Models
 {
+    //Hello changes Start
     public class CartItem : ILineItem
     {
         [Key]
@@ -15,7 +16,7 @@ namespace PartsUnlimited.Models
 
         [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
-
+//Hello changes END
         public virtual Product Product { get; set; }
     }
 }
