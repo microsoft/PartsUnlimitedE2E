@@ -7,6 +7,7 @@ namespace PartsUnlimited.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
+        //Change_002_17DEC2020
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
