@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using PartsUnlimited.Models;
 using PartsUnlimited.ViewModels;
 
+// Comment for Lab 3 Exercise 5
 namespace PartsUnlimited.Controllers
 {
     [Authorize]
