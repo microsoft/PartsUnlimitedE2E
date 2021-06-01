@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 
+// changed - within release
+
 namespace PartsUnlimited.Models
 {
     public class ExternalLoginConfirmationViewModel
