@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+//pull
 namespace PartsUnlimited.Models
-{
-    public class Category
+{    public class Category
     {
         public int CategoryId { get; set; }
 
