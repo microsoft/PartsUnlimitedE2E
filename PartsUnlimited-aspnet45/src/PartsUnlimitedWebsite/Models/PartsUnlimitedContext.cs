@@ -6,7 +6,7 @@ namespace PartsUnlimited.Models
     public class PartsUnlimitedContext : IdentityDbContext<ApplicationUser>, IPartsUnlimitedContext
     {
         public PartsUnlimitedContext()
-            : base("name=DefaultConnectionString")
+            : base("name=defaultConnection")
         {
         }
 
