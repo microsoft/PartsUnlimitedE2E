@@ -1,34 +1,41 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+# ASP.NET Core updated
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2019'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
+- script: dotnet restore
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
-- task: VSBuild@1
+# do this after you've built your app, near the end of your pipeline in most cases
+# for example, you do this before you deploy to an Azure web app on Windows
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True 
 
-- task: VSTest@2
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
+
+- task: AzureRmWebAppDeployment@4
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    ConnectionType: 'AzureRM'
+    azureSubscription: '<REPLACE_AZURE_SUBSCRIPTION_NAME_(ID)>'
+    appType: 'webApp'
+    WebAppName: 'WebProjectForPipelines'
+    packageForLinux: '$(System.ArtifactsDirectory)/**/*.zip'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
