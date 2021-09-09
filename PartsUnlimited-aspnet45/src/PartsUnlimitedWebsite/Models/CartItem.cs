@@ -17,6 +17,6 @@ namespace PartsUnlimited.Models
         public DateTime DateCreated { get; set; }
 
         public virtual Product Product { get; set; }
-        //My first github change - rneuka
+        //My second github change - rneuka
     }
 }
