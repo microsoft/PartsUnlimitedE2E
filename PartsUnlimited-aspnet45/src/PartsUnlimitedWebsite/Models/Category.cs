@@ -15,5 +15,7 @@ namespace PartsUnlimited.Models
         public string ImageUrl { get; set; }
 
         public List<Product> Products { get; set; }
+        //My 3rd change
+        //For pull request ...catagory chnage fixed #1
     }
 }
