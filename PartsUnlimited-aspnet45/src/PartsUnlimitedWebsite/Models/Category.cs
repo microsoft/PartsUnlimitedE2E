@@ -16,5 +16,6 @@ namespace PartsUnlimited.Models
 
         public List<Product> Products { get; set; }
         //My third change - renuka
+        //category cange. fixes #1
     }
 }
