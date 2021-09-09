@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PartsUnlimited.Models
 {
     public class Category
+    // my changes to new PC
     {
         public int CategoryId { get; set; }
 
