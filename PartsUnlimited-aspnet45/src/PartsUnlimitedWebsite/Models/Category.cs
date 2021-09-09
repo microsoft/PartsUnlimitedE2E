@@ -15,5 +15,7 @@ namespace PartsUnlimited.Models
         public string ImageUrl { get; set; }
 
         public List<Product> Products { get; set; }
+        //My third change - renuka
+        //category cange. fixes #1
     }
 }
