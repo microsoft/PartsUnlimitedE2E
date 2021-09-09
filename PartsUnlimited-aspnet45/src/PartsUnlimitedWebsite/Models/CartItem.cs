@@ -10,6 +10,7 @@ namespace PartsUnlimited.Models
         //Insert
 
         [Required]
+        //my secnd change
         public string CartId { get; set; }
         public int ProductId { get; set; }
         public int Count { get; set; }
