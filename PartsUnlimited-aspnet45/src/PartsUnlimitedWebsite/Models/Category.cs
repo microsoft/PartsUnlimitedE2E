@@ -6,7 +6,7 @@ namespace PartsUnlimited.Models
     public class Category
     {
         public int CategoryId { get; set; }
-
+//category chage issues #1
 // My third change
         [Required]
         public string Name { get; set; }
