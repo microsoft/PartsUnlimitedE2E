@@ -11,5 +11,6 @@ namespace PartsUnlimited.Models
 		int Count { get; }
 
 		Product Product { get; }
+		//  este es OTRO cambio para GitHub desde start stages
 	}
 }
