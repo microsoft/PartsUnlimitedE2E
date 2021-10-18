@@ -13,7 +13,7 @@ namespace PartsUnlimited.Models
 
         [Required]
         public string CartId { get; set; }
-        // newbranchMarcelo
+        // newbranchMarcelo, cambio para pull request.
         public int ProductId { get; set; }
         public int Count { get; set; }
 
