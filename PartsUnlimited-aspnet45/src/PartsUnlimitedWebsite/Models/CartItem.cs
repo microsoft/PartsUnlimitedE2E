@@ -8,8 +8,13 @@ namespace PartsUnlimited.Models
         [Key]
         public int CartItemId { get; set; }
 
+        // my first change from githup
+        // my second change to this file
+        // cambios
+
         [Required]
         public string CartId { get; set; }
+        // newbranchMarcelo, cambio para pull request.
         public int ProductId { get; set; }
         public int Count { get; set; }
 
