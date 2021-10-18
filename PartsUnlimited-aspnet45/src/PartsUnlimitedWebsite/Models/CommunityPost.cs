@@ -10,6 +10,7 @@ namespace PartsUnlimited.Models
         public DateTime DatePosted { get; set; }
         public CommunitySource Source { get; set; }
         // Este cambko va por mi parte hasta github
+        // y un ultimo cambio a communityPost
     }
 
     public enum CommunitySource
