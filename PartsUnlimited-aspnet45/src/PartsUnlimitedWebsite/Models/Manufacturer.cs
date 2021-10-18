@@ -8,5 +8,8 @@ namespace PartsUnlimited.Models
 
         [Required]
         public string Name { get; set; }
+        // Mas y mas cambios en GitHub.. para aprender
+        // otro cambio a manufactures
+        // from remote branch called release1
     }
 }
