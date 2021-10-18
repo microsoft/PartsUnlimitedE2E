@@ -8,6 +8,9 @@ namespace PartsUnlimited.Models
         [Key]
         public int CartItemId { get; set; }
 
+        // my first change from githup
+        // my second change to this file
+
         [Required]
         public string CartId { get; set; }
         public int ProductId { get; set; }
