@@ -13,6 +13,7 @@ namespace PartsUnlimited.Models
 
         [Required]
         public string CartId { get; set; }
+        // newbranchMarcelo
         public int ProductId { get; set; }
         public int Count { get; set; }
 
