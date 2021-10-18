@@ -10,5 +10,6 @@ namespace PartsUnlimited.Models
         public string Name { get; set; }
         // Mas y mas cambios en GitHub.. para aprender
         // otro cambio a manufactures
+        // manufactures desde dev2, 
     }
 }
