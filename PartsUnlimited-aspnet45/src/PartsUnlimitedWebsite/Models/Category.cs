@@ -15,6 +15,7 @@ namespace PartsUnlimited.Models
         public string ImageUrl { get; set; }
 
         public List<Product> Products { get; set; }
-        // categoria master
+        // categoria master....
+        // cambios en release
     }
 }
