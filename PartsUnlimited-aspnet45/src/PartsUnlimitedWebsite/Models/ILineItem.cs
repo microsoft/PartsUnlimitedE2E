@@ -12,7 +12,6 @@ namespace PartsUnlimited.Models
 
 		Product Product { get; }
 		//  este es OTRO cambio para GitHub desde start stages
-		// cambio tambien a lLineItem
 		// este es un cambio mas
 		// Y otro cmabio mas asi que deben ser ya 3 hasta aqui.
 		// y ahora el cuarto y ultimo cambio..
