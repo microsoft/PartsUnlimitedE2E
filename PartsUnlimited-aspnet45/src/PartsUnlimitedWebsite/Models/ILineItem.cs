@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PartsUnlimited.Models
+// un cambio cualquiera
 {
 	public interface ILineItem
 	{
