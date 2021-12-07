@@ -5,7 +5,6 @@ namespace PartsUnlimited.Models
 {
     public class Category
     {
-        // Github changes
         public int CategoryId { get; set; }
 
         [Required]
