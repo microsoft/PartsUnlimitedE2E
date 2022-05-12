@@ -8,7 +8,7 @@
 
         public int ProductId { get; set; }
 
-        public int Count { get; set; }
+        public int Count { get; set; }//new count done
 
         public decimal UnitPrice { get; set; }
 

@@ -3,7 +3,7 @@
 namespace PartsUnlimited.Models
 {
 
-    public class CommunityPost
+    public class CommunityPost//new post change
     {
         public string Image { get; set; }
         public string Content { get; set; }
@@ -11,7 +11,7 @@ namespace PartsUnlimited.Models
         public CommunitySource Source { get; set; }
     }
 
-    public enum CommunitySource
+    public enum CommunitySource//another change
     {
         Facebook,
         Twitter
