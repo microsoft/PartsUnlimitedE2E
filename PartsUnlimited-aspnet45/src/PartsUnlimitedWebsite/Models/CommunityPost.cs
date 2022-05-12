@@ -3,7 +3,7 @@
 namespace PartsUnlimited.Models
 {
 
-    public class CommunityPost
+    public class CommunityPost//new post change
     {
         public string Image { get; set; }
         public string Content { get; set; }
