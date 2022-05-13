@@ -13,7 +13,7 @@ namespace PartsUnlimited.Models
         public int ProductId { get; set; }
         public int Count { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime)]//update time and date
         public DateTime DateCreated { get; set; }
 
         public virtual Product Product { get; set; }
