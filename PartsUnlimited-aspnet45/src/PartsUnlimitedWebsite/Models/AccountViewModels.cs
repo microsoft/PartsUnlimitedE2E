@@ -11,7 +11,7 @@ namespace PartsUnlimited.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required]//my new change
         [Display(Name = "Name")]
         public string Name { get; set; }
     }
