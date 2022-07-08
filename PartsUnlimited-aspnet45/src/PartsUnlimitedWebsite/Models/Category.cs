@@ -6,7 +6,7 @@ namespace PartsUnlimited.Models
     public class Category
     {
         public int CategoryId { get; set; }
-
+        //cambio
         [Required]
         public string Name { get; set; }
 
@@ -17,3 +17,4 @@ namespace PartsUnlimited.Models
         public List<Product> Products { get; set; }
     }
 }
+
