@@ -1,0 +1,12 @@
+rg_01_name = "rg-kfctta-mgmt-wus3-001"
+rg_01_location = "west us3"
+vnet_01_name = "vnet-kfctta-mgmt-wus3-001"
+vnet_01_address_space = [ "10.10.100.0/24" ]
+subnet_01_name = "sn-frontend"
+subnet_01_address_perfix = ["10.10.100.0/26"]
+tag_env_name = "management"
+nic_01_name = "nic-kfctta-jumpbox-wus3-001"
+nsg_01_name = "nsg-kfctta-jumpbox-wus3-001"
+vm_01_name = "vm-jumpbox-001"
+private_ip_address = "10.10.100.0"
+pip_01_name = "pip-kfctta-jumpbox-wus3-001"
