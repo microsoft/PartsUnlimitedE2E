@@ -1,0 +1,64 @@
+pool:
+  name: MynewAgentPool
+
+variables:
+  BuildConfiguration: "release"
+  BuildPlatform: "any cpu"
+
+stages:
+  - stage:
+    displayName: Build
+    jobs:
+      - job:
+        displayName: Build_And_Publish
+        steps:
+          - task: NuGetCommand@2
+            displayName: Nuget_Restore
+            inputs:
+              command: 'restore'
+              restoreSolution: '**/*.sln'
+              feedsToUse: 'select'
+          - task: VSBuild@1
+            displayName: Build_Solution
+            inputs:
+              solution: '**\*.sln'
+              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+              platform: '$(BuildPlatform)'
+              configuration: '$(BuildConfiguration)'
+          - task: PublishBuildArtifacts@1
+            displayName: Publish_Artifact
+            inputs:
+              PathtoPublish: '$(build.artifactstagingdirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+  - stage: 
+    displayName: Infrastructure_Provisioning
+    jobs:
+      - job:
+        displayName: Terrafrom
+        steps:
+          - task: TerraformTaskV3@3
+            displayName: Init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
+              backendServiceArm: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
+              backendAzureRmResourceGroupName: 'SA-TF-BACKENDS'
+              backendAzureRmStorageAccountName: 'azb23tfremotebackends1'
+              backendAzureRmContainerName: 'tfremotebackends1'
+              backendAzureRmKey: 'dev.terraform.tfstate'
+          - task: TerraformTaskV3@3
+            displayName: Plan
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
+              environmentServiceNameAzureRM: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
+          - task: TerraformTaskV3@3
+            displayName: Apply
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
+              environmentServiceNameAzureRM: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
