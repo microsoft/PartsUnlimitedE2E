@@ -13,11 +13,11 @@ stages:
         displayName: Build_And_Publish
         steps:
           - task: NuGetCommand@2
-            displayName: Nuget_Restore
             inputs:
               command: 'restore'
               restoreSolution: '**/*.sln'
               feedsToUse: 'select'
+              vstsFeed: '0ea46223-8f6c-411f-a59c-507a08b8ab35'
           - task: VSBuild@1
             displayName: Build_Solution
             inputs:
