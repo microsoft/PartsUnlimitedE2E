@@ -22,12 +22,11 @@ stages:
             displayName: Build_Solution
             inputs:
               solution: '**\*.sln'
-              vsversion: '17.0'
-              MSBuildArchitecture: 'x64'
+              vsversion: 'Latest'
+              MSBuildArchitecture: 'x86'
               msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
               platform: '$(BuildPlatform)'
               configuration: '$(BuildConfiguration)'
-              customVersion: '1.*'
           - task: PublishBuildArtifacts@1
             displayName: Publish_Artifact
             inputs:
