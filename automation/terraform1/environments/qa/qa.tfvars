@@ -1,0 +1,12 @@
+rg_01_name = "rg-kfctta-qa-wus3-001"
+rg_01_location = "west us3"
+vnet_01_name = "vnet-kfctta-qa-wus3-001"
+vnet_01_address_space = [ "192.168.200.0/24" ]
+subnet_01_name = "sn-frontend"
+subnet_01_address_perfix = ["192.168.200.0/26"]
+tag_env_name = "QA"
+nic_01_name = "nic-kfctta-qa-wus3-001"
+nsg_01_name = "nsg-kfctta-qa-wus3-001"
+vm_01_name = "vm-qa-wus3-001"
+private_ip_address = "192.168.200.0"
+pip_01_name = "none"

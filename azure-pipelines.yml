@@ -1,0 +1,35 @@
+pool:
+  name: MynewAgentPool
+
+variables:
+  BuildConfiguration: "release"
+  BuildPlatform: "any cpu"
+
+stages:
+  - stage:
+    displayName: Build
+    jobs:
+      - job:
+        displayName: Build_And_Publish
+        steps:
+          - task: NuGetCommand@2
+            displayName: Nuget_Restore
+            inputs:
+              command: 'restore'
+              restoreSolution: '**/*.sln'
+              feedsToUse: 'select'
+          - task: VSBuild@1
+            displayName: Build_Solution
+            inputs:
+              solution: '**\*.sln'
+              vsversion: 'Latest'
+              MSBuildArchitecture: 'x86'
+              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+              platform: '$(BuildPlatform)'
+              configuration: '$(BuildConfiguration)'
+          - task: PublishBuildArtifacts@1
+            displayName: Publish_Artifact
+            inputs:
+              PathtoPublish: '$(build.artifactstagingdirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
