@@ -1,8 +1,60 @@
-stages:
-  - stage: stage1
-    jobs:
-    - job: job1
-      steps:
-      -  script: echo "HELLO WORLD"
+pool:
+  name: MynewAgentPool
 
-      
+variables:
+  BuildConfiguration: "release"
+  BuildPlatform: "any cpu"
+
+stages:
+  - stage:
+    displayName: Build
+    jobs:
+      - job:
+        displayName: Build_And_Publish
+        steps:
+          - task: NuGetCommand@2
+            displayName: Nuget_Restore
+            inputs:
+              command: 'restore'
+              restoreSolution: '**/*.sln'
+              feedsToUse: 'select'
+          - task: VSBuild@1
+            displayName: Build_Solution
+            inputs:
+              solution: '**\*.sln'
+              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+              platform: '$(BuildPlatform)'
+              configuration: '$(BuildConfiguration)'
+          - task: PublishBuildArtifacts@1
+            displayName: Publish_Artifact
+            inputs:
+              PathtoPublish: '$(build.artifactstagingdirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+  - stage: 
+    displayName: Infrastructure_Provisioning
+    jobs:
+      - job:
+        displayName: Terrafrom
+        steps:
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'init'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\OneDrive\Desktop\terraformbackend'
+               backendServiceArm: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
+               backendAzureRmResourceGroupName: 'sa-tf-backends'
+               backendAzureRmStorageAccountName: 'azb23tfremotebackends1'
+               backendAzureRmContainerName: 'tfremotebackends1'
+               backendAzureRmKey: 'dev.terraform.tfstate'
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'plan'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\OneDrive\Desktop\terraformbackend'
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'apply'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\OneDrive\Desktop\terraformbackend'
+               environmentServiceNameAzureRM: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
