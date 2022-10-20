@@ -19,6 +19,7 @@ stages:
               restoreSolution: '**/*.sln'
               feedsToUse: 'select'
           - task: VSBuild@1
+            displayName: Build_Solution
             inputs:
               solution: '**\*.sln'
               msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
