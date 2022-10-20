@@ -41,7 +41,7 @@ stages:
              inputs:
                provider: 'azurerm'
                command: 'init'
-               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend'
                backendServiceArm: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
                backendAzureRmResourceGroupName: 'sa-tf-backends'
                backendAzureRmStorageAccountName: 'azb23tfremotebackends1'
@@ -51,10 +51,10 @@ stages:
              inputs:
                provider: 'azurerm'
                command: 'plan'
-               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend'
            - task: TerraformTaskV3@3
              inputs:
                provider: 'azurerm'
                command: 'apply'
-               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend'
                environmentServiceNameAzureRM: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
