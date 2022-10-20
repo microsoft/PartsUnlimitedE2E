@@ -37,28 +37,24 @@ stages:
       - job:
         displayName: Terrafrom
         steps:
-          - task: TerraformTaskV3@3
-            displayName: Init
-            inputs:
-              provider: 'azurerm'
-              command: 'init'
-              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
-              backendServiceArm: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
-              backendAzureRmResourceGroupName: 'SA-TF-BACKENDS'
-              backendAzureRmStorageAccountName: 'azb23tfremotebackends1'
-              backendAzureRmContainerName: 'tfremotebackends1'
-              backendAzureRmKey: 'dev.terraform.tfstate'
-          - task: TerraformTaskV3@3
-            displayName: Plan
-            inputs:
-              provider: 'azurerm'
-              command: 'plan'
-              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
-              environmentServiceNameAzureRM: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
-          - task: TerraformTaskV3@3
-            displayName: Apply
-            inputs:
-              provider: 'azurerm'
-              command: 'apply'
-              workingDirectory: '$(System.DefaultWorkingDirectory)\Automation\Terraform'
-              environmentServiceNameAzureRM: 'Pay-As-You-Go(939d0063-f302-41c3-a37b-d6a44a4eb692)'
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'init'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+               backendServiceArm: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
+               backendAzureRmResourceGroupName: 'sa-tf-backends'
+               backendAzureRmStorageAccountName: 'azb23tfremotebackends1'
+               backendAzureRmContainerName: 'tfremotebackends1'
+               backendAzureRmKey: 'dev.terraform.tfstate'
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'plan'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+           - task: TerraformTaskV3@3
+             inputs:
+               provider: 'azurerm'
+               command: 'apply'
+               workingDirectory: '$(System.DefaultWorkingDirectory)\terraformbackend\myproject-01'
+               environmentServiceNameAzureRM: 'Free Trial(2f5a2cf9-f99c-4c7f-97d9-c72841dd07b6)'
