@@ -19,12 +19,8 @@ stages:
               feedsToUse: 'select'
               vstsFeed: '0ea46223-8f6c-411f-a59c-507a08b8ab35'
           - task: VSBuild@1
-            displayName: Build_Solution
             inputs:
               solution: '**\*.sln'
-              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
-              platform: '$(BuildPlatform)'
-              configuration: '$(BuildConfiguration)'
           - task: PublishBuildArtifacts@1
             displayName: Publish_Artifact
             inputs:
