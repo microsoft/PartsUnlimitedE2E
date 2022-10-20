@@ -18,13 +18,14 @@ stages:
               command: 'restore'
               restoreSolution: '**/*.sln'
               feedsToUse: 'select'
-          - task: VSBuild@1
+          - task: MSBuild@1
             displayName: Build_Solution
             inputs:
-              solution: '**\*.sln'
-              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+              solution: '**/*.sln'
+              msbuildArchitecture: 'x64'
               platform: '$(BuildPlatform)'
               configuration: '$(BuildConfiguration)'
+              msbuildArguments: '''/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
           - task: PublishBuildArtifacts@1
             displayName: Publish_Artifact
             inputs:
