@@ -2,7 +2,7 @@
 
 namespace PartsUnlimited.Models
 {
-
+// toinen kommentti fileen
     public class CommunityPost
     {
         public string Image { get; set; }
