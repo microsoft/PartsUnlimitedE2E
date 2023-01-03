@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'Azure VM Agent Pool'
 
 variables:
   solution: '**/*.sln'
