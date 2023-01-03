@@ -7,7 +7,10 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+#  vmImage: 'windows-latest'
+   name: 'Azure VM Agent Pool'
+   demands:
+   - agent.name -equals LAPTOP-DPFCG9S6
 
 variables:
   solution: '**/*.sln'
