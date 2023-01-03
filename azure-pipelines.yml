@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Azure VM Agent Pool'
+  vmImage: 'Azure Pipelines'
 
 variables:
   solution: '**/*.sln'
