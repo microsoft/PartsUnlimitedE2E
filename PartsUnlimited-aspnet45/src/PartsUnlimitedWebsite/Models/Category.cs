@@ -5,6 +5,7 @@ namespace PartsUnlimited.Models
 {
     public class Category
     {
+        // This is a model with properties
         public int CategoryId { get; set; }
 
         [Required]
