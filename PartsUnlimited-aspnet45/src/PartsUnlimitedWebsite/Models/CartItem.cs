@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PartsUnlimited.Models
 {
     // Cart item model with properties
+    // github exercise
     public class CartItem : ILineItem
     {
         [Key]
