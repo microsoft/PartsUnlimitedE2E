@@ -13,6 +13,7 @@ namespace PartsUnlimited.Models
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
+        // jimmyraj
 
         public List<Product> Products { get; set; }
     }
