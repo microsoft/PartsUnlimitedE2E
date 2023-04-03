@@ -6,6 +6,7 @@ namespace PartsUnlimited.Models
     public class CartItem : ILineItem
     {
         //my frist commit confirm commit 
+        //test of commit 
         [Key]
         public int CartItemId { get; set; }
 
