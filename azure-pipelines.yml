@@ -7,7 +7,9 @@ trigger:
 - master
 
 pool:
-  vmImage: 'My Pool - VS 2017 Based'
+  name: My Pool - VS 2017 Based
+  demands:
+   - agent.name -equals Agent1-2017
 
 variables:
   solution: '**/*.sln'
