@@ -9,7 +9,7 @@ trigger:
 pool:
   name: My Pool - VS 2017 Based
   demands:
-   - agent.name -equals Agent1-2017
+   - agent.name -equals aszxc2017
 
 variables:
   solution: '**/*.sln'
