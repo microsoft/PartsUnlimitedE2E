@@ -7,7 +7,7 @@ namespace PartsUnlimited.Models
     {
         [Key]
         public int CartItemId { get; set; }
-
+// nizar
         [Required]
         public string CartId { get; set; }
         public int ProductId { get; set; }
