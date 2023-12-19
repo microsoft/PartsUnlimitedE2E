@@ -5,6 +5,7 @@ namespace PartsUnlimited.Models
 {
     public class CartItem : ILineItem
     {
+        //my first change
         [Key]
         public int CartItemId { get; set; }
 
@@ -12,7 +13,7 @@ namespace PartsUnlimited.Models
         public string CartId { get; set; }
         public int ProductId { get; set; }
         public int Count { get; set; }
-
+//ready
         [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
 
